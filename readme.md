@@ -66,7 +66,8 @@ Create a `.env` file in the root directory of your project and add the following
 FOREST_ENV_SECRET=###
 FOREST_AUTH_SECRET=###
 DATABASE_URL=postgresql://your_username:your_password@localhost:5432/your_database
-NODE_ENV=false
+NODE_ENV=development|production
+PORT=3000
 ```
 
 Make sure to replace the placeholders (`###`, `your_username`, `your_password`, and `your_database`) with the appropriate values for your setup.
