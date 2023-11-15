@@ -138,7 +138,7 @@
       "name": "chef_availabilities",
       "onlyForRelationships": false,
       "paginationType": "page",
-      "segments": []
+      "segments": [{"id": "chef_availabilities.mySegment", "name": "mySegment"}]
     },
     {
       "actions": [],

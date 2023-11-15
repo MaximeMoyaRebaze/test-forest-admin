@@ -1,10 +1,10 @@
 import 'dotenv/config';
 import { CollectionCustomizer, createAgent } from '@forestadmin/agent';
 import { createSqlDataSource } from '@forestadmin/datasource-sql';
-import { Schema } from './typings';
-import chef_availabilities from './customization/chef_availabilities';
+import { Schema } from '../../typings';
 
-// Create your Forest Admin agentOptions
+// https://docs.forestadmin.com/developer-guide-agents-nodejs/data-sources/getting-started/queries
+
 const agentOptions = {
     envSecret: process.env.FOREST_ENV_SECRET ?? "",
     authSecret: process.env.FOREST_AUTH_SECRET ?? "",
@@ -12,17 +12,9 @@ const agentOptions = {
     typingsPath: './src/typings.ts',
     typingsMaxDepth: 5,
 }
-
-// Create your Forest Admin agent
-// This must be called BEFORE all other middleware of your backend server 'ExpressApp'
 const agent = createAgent<Schema>(agentOptions)
-
-// AddDataSource to your Forest Admin agent
 const sqlDataSource = createSqlDataSource(process.env.DATABASE_URL ?? "")
 agent.addDataSource(sqlDataSource)
-
-// Customize collection of your Forest Admin agent
-// agent.customizeCollection('chef_availabilities', chef_availabilities)
 
 const addSegmentToChefAvailabilities = (chef_availabilities: CollectionCustomizer<Schema, 'chef_availabilities'>) =>
     chef_availabilities.addSegment('mySegment', async context => {
@@ -34,6 +26,5 @@ const addSegmentToChefAvailabilities = (chef_availabilities: CollectionCustomize
     });
 agent.customizeCollection("chef_availabilities", addSegmentToChefAvailabilities)
 
-// mount your Forest Admin agent on your backend server
 agent.mountOnStandaloneServer(parseInt(process.env.PORT ?? ""), 'localhost')
 agent.start();

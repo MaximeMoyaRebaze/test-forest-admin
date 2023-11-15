@@ -70,6 +70,9 @@ NODE_ENV=development|production
 PORT=3000
 ```
 
+to use test db in docker:
+docker run -p 5432:5432 --name forest_demo_database forestadmin/meals-database
+
 Make sure to replace the placeholders (`###`, `your_username`, `your_password`, and `your_database`) with the appropriate values for your setup.
 
 
