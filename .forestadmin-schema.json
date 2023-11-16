@@ -138,7 +138,7 @@
       "name": "chef_availabilities",
       "onlyForRelationships": false,
       "paginationType": "page",
-      "segments": [{"id": "chef_availabilities.mySegment", "name": "mySegment"}]
+      "segments": []
     },
     {
       "actions": [],
@@ -283,7 +283,51 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "customers-1-check-if-lastname-is-equal-to-miller-with-server-logs",
+          "name": "Check if lastname is equal to Miller with server logs",
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/customers/1/check-if-lastname-is-equal-to-miller-with-server-logs",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {"load": false, "change": ["changeHook"]}
+        },
+        {
+          "id": "customers-2-update-lastname",
+          "name": "Update lastname",
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/customers/2/update-lastname",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [
+            {
+              "description": "description how to update lastname",
+              "isRequired": true,
+              "field": "lastname",
+              "type": "String"
+            }
+          ],
+          "hooks": {"load": false, "change": ["changeHook"]}
+        },
+        {
+          "id": "customers-0-say-hello-in-forestadmin",
+          "name": "say hello in forestAdmin",
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/customers/0/say-hello-in-forestadmin",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {"load": false, "change": ["changeHook"]}
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,

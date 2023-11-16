@@ -1,8 +1,8 @@
 import 'dotenv/config';
-import { CollectionCustomizer, createAgent } from '@forestadmin/agent';
+import { createAgent } from '@forestadmin/agent';
 import { createSqlDataSource } from '@forestadmin/datasource-sql';
 import { Schema } from './typings';
-import chef_availabilities from './customization/chef_availabilities';
+import { addSingleActionToCheckStringField, addSingleActionToUpdateStringField } from './tutorial/agent-customization/example-actions'
 
 // Create your Forest Admin agentOptions
 const agentOptions = {
@@ -13,7 +13,7 @@ const agentOptions = {
     typingsMaxDepth: 5,
 }
 
-// Create your Forest Admin agent
+// Create Forest Admin agent
 // This must be called BEFORE all other middleware of your backend server 'ExpressApp'
 const agent = createAgent<Schema>(agentOptions)
 
@@ -21,18 +21,32 @@ const agent = createAgent<Schema>(agentOptions)
 const sqlDataSource = createSqlDataSource(process.env.DATABASE_URL ?? "")
 agent.addDataSource(sqlDataSource)
 
-// Customize collection of your Forest Admin agent
-// agent.customizeCollection('chef_availabilities', chef_availabilities)
-
-const addSegmentToChefAvailabilities = (chef_availabilities: CollectionCustomizer<Schema, 'chef_availabilities'>) =>
-    chef_availabilities.addSegment('mySegment', async context => {
-        const rows = await context.dataSource
-            .getCollection('chef_availabilities')
-            .aggregate({}, { operation: 'Count', groups: [{ field: 'chef_id' }] }, 10);
-
-        return { field: 'id', operator: 'In', value: rows.map(r => r['value']) };
+// Customize the 'customers' collection from the added data source.
+agent.customizeCollection('customers', collection => {
+    // Add a Smart Action
+    collection.addAction('say hello in forestAdmin', {
+        scope: 'Single',
+        execute: async (context, resultBuilder) => {
+            return resultBuilder.success('Hello !');
+        },
     });
-agent.customizeCollection("chef_availabilities", addSegmentToChefAvailabilities)
+
+})
+
+// Customize the 'customers' collection from the added data source.
+addSingleActionToCheckStringField<Schema, 'customers'>(
+    agent,
+    'customers',
+    'lastname',
+    'Miller'
+)
+
+// Customize the 'customers' collection from the added data source.
+addSingleActionToUpdateStringField<Schema, 'customers'>(
+    agent,
+    'customers',
+    'lastname'
+)
 
 // mount your Forest Admin agent on your backend server
 agent.mountOnStandaloneServer(parseInt(process.env.PORT ?? ""), 'localhost')
