@@ -3,6 +3,7 @@ import { createAgent } from '@forestadmin/agent';
 import { createSqlDataSource } from '@forestadmin/datasource-sql';
 import { Schema } from './typings';
 import { addSingleActionToCheckStringField, addSingleActionToUpdateStringField } from './tutorial/agent-customization/example-actions'
+import { addHookToCreateACustomer } from './tutorial/agent-customization/example-hooks';
 
 // Create your Forest Admin agentOptions
 const agentOptions = {
@@ -47,6 +48,9 @@ addSingleActionToUpdateStringField<Schema, 'customers'>(
     'customers',
     'lastname'
 )
+
+// Customize the 'customers' collection from the added data source.
+addHookToCreateACustomer(agent)
 
 // mount your Forest Admin agent on your backend server
 agent.mountOnStandaloneServer(parseInt(process.env.PORT ?? ""), 'localhost')
