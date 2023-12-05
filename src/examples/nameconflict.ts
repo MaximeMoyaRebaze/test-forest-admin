@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { createAgent } from '@forestadmin/agent';
 import { createSqlDataSource } from '@forestadmin/datasource-sql';
-import { Schema } from '../../typings';
+import { Schema } from '../typings';
 
 // https://docs.forestadmin.com/developer-guide-agents-nodejs/data-sources/getting-started/naming-conflicts
 

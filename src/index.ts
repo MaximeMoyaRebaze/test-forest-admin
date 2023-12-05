@@ -2,8 +2,8 @@ import 'dotenv/config';
 import { createAgent } from '@forestadmin/agent';
 import { createSqlDataSource } from '@forestadmin/datasource-sql';
 import { Schema } from './typings';
-import { addSingleActionToCheckStringField, addSingleActionToUpdateStringField } from './tutorial/agent-customization/example-actions'
-import { addHookToCreateACustomer } from './tutorial/agent-customization/example-hooks';
+import { addSingleActionToCheckStringField, addSingleActionToUpdateStringField } from './poc/agent-customization/example-actions'
+import { addHookToCreateACustomer } from './poc/agent-customization/example-hooks';
 
 // Create your Forest Admin agentOptions
 const agentOptions = {

@@ -33,7 +33,7 @@ export function addSingleActionToUpdateStringField<S extends TSchema, C extends 
     fieldName: TFieldName<S, C>
 ) {
 
-    // AGENT COLLECTION ACTION IMPLEMENTATION
+    // AGENT COLLECTION
     agent.customizeCollection(collectionName, collection => {
         return collection.addAction(
 

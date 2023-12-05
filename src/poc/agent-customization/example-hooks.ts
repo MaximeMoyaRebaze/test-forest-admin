@@ -7,10 +7,10 @@ export function addHookToCreateACustomer(
     agent: Agent<Schema>
 ) {
 
-    // AGENT COLLECTION ACTION IMPLEMENTATION
+    // AGENT COLLECTION
     agent.customizeCollection("customers", collection => {
 
-        return collection.addHook('Before', 'Create', async (context) => {
+        return collection.addHook('Before', 'Create', (context) => {
 
             // INPUT DATA
             const firstname = context.data[0].firstname ?? "";
@@ -27,11 +27,10 @@ export function addHookToCreateACustomer(
                 phone
             )
 
+            // CATCH ERROR
             if (customerEffect instanceof Error) {
                 return context.throwValidationError(`${customerEffect.message}`)
             }
-
-            // TODO: try to create other collection entity from here
 
         });
 

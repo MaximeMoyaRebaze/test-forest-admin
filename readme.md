@@ -75,5 +75,7 @@ docker run -p 5432:5432 --name forest_demo_database forestadmin/meals-database
 
 Make sure to replace the placeholders (`###`, `your_username`, `your_password`, and `your_database`) with the appropriate values for your setup.
 
+### link to Notion
+https://www.notion.so/tuto-Forest-Admin-6ea4f48066784dd8bbfffbf05e471b90
 
 Happy coding with Forest Admin!

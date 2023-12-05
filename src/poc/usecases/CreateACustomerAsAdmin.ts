@@ -4,14 +4,11 @@ import { CustomerService } from "../services/interfaces/CustomerService"
 export const createCustomerAsAdmin:
     (CustomerService: CustomerService, firstname: string, lastname: string, address: string, phone: string) => Customer | Error =
     (CustomerService: CustomerService, firstname: string, lastname: string, address: string, phone: string) => {
-        if (firstname.trim() === "") {
-            return new Error("firstname is missing")
+        if (firstname.trim() === "" || firstname.trim().length < 3) {
+            return new Error("firstname is missing or too short")
         }
-        if (lastname.trim() === "") {
-            return new Error("lastname is missing")
-        }
-        if (address.trim() === "") {
-            return new Error("address is missing")
+        if (lastname.trim() === "" || lastname.trim().length < 3) {
+            return new Error("lastname is missing or too short")
         }
         if (phone.trim() === "" || phone.trim().length !== 10) {
             return new Error("phone is missing or incorrect (10 numbers required)")
