@@ -1,4 +1,4 @@
-# tuto Forest Admin
+# POC Forest Admin
 
 This is a tutorial that will guide you through the process of installing and setting up Forest Admin in your application.
 
@@ -9,7 +9,7 @@ https://docs.forestadmin.com/developer-guide-agents-nodejs/getting-started/quick
 To install the Forest Admin agent, run the following command:
 
 ```bash
-pnpm install @forestadmin/agent @forestadmin/datasource-sql
+npm install @forestadmin/agent @forestadmin/datasource-sql
 ```
 
 ## Initialization
@@ -78,4 +78,4 @@ Make sure to replace the placeholders (`###`, `your_username`, `your_password`, 
 ### link to Notion
 https://www.notion.so/tuto-Forest-Admin-6ea4f48066784dd8bbfffbf05e471b90
 
-Happy coding with Forest Admin!
+Happy coding with Forest Admin !
